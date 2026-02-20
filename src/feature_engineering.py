@@ -33,3 +33,9 @@ def merge_all_features(rfm, extra_features, future_revenue):
         model_df['Future_6M_Revenue'].fillna(0)
     )
     return model_df
+
+def build_churn_target(future_data, churn_window_end):
+    active_customers= (future_data[future_data['InvoiceDate'] <= churn_window_end]
+                       .unique())
+    active_customers= set(active_customers)
+    return active_customers
