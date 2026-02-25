@@ -18,7 +18,7 @@ from src.feature_engineering import(
 
 from src.ltv_model import train_model
 #Load data
-def run_rvenue_training():
+def run_revenue_training():
     df=load_data("Dataset/Raw_Data.csv")
     df= add_total_price(df)
 
