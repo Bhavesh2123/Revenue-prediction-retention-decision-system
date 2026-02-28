@@ -2,6 +2,9 @@ import sys
 import os
 from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
+data_path = BASE_DIR / "Dataset" / "Raw_Data.csv"
+if not data_path.exists():
+    raise FileNotFoundError(f"Data file not found: {data_path}")
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 import pandas as pd
