@@ -23,6 +23,7 @@ def time_based_split(df, cutoff_date, prediction_end):
     ]
     return past_data, future_data
 def add_total_price(df):
+    df=df.copy()
     df = df[df['Quantity'] > 0]
     df = df[df['UnitPrice'] > 0]
     df['TotalPrice'] = df['Quantity'] * df['UnitPrice']
