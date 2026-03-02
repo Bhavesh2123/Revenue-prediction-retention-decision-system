@@ -32,6 +32,10 @@ def time_based_split(df, cutoff_date, prediction_end):
         (df['InvoiceDate']> cutoff_date)&
         (df['InvoiceDate']<= prediction_end)
     ]
+    if past_data.empty:
+        raise ValueError("past_data is empty — check your cutoff_date.")
+    if future_data.empty:
+        raise ValueError("future_data is empty — check your prediction_end date.")
     return past_data, future_data
 def add_total_price(df):
     df=df.copy()
