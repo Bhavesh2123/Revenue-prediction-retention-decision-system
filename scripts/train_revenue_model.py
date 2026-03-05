@@ -41,7 +41,7 @@ def run_revenue_training():
 
     model= train_model(model_df)
     joblib.dump(model, BASE_DIR / "models" / "revenue_model.pkl")
-    print("Revenue training Complete.")
+    print("Revenue training Complete. R^2 : {metrics['R2']}")
     return model
 
 
