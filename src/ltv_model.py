@@ -43,7 +43,7 @@ def train_model(model_df):
     search= RandomizedSearchCV(
         estimator=base_model,
         param_distributions=param_distributions,
-        n_iters=75,
+        n_iter=75,
         scoring="neg_root_mean_squared_error",
         cv=5,
         n_jobs=-1,

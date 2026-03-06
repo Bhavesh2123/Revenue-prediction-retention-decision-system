@@ -10,7 +10,7 @@ def build_rfm(past_data, snapshot_date):
     Returns:
         pd.DataFrame with columns [CustomerID, Recency, Frequency, Monetary]
     """
-    if past_data.empty():
+    if past_data.empty:
         raise ValueError("[build_rfm] past_data is empty - check your timesplit")
     rfm=past_data.groupby('CustomerID').agg({
         'InvoiceDate': lambda x:(snapshot_date- x.max()).days,
@@ -20,15 +20,16 @@ def build_rfm(past_data, snapshot_date):
     rfm.columns=['CustomerID','Recency','Frequency','Monetary']
     return rfm
 def build_additional_features(past_data, snapshot_date):
-    features= past_data.groupby('CustomerID').agg(Avg_Order_Value=('TotalPrice', 'mean'),
+    features= past_data.groupby('CustomerID').agg(
+        Avg_Order_Value=('TotalPrice', 'mean'),
         First_Purchase_Date=('InvoiceDate', 'min'),
         Last_Purchase_Date=('InvoiceDate', 'max'),
         Unique_Products=('StockCode', 'nunique'),   # product breadth
         Total_Quantity=('Quantity', 'sum'),          # volume buyer vs. high-value buyer
         Num_Invoices=('InvoiceNo', 'nunique'),       # same as Frequency but explicit
     ).reset_index()
-    features.columns = ['Avg_Order_Value','First_Purchase_Date','Last_Purchase_Date']
-    features = features.reset_index()
+    
+  
     features['Customer_Age']=(snapshot_date - features['First_Purchase_Date']).dt.days
     features['Time_Since_Last_Purchase'] = (
         snapshot_date - features['Last_Purchase_Date']

@@ -3,7 +3,7 @@ def load_data(path):
     df=pd.read_csv(path)
     df['InvoiceDate']=pd.to_datetime(df['InvoiceDate'])
     initial_rows= len(df)
-    df=df.dropna(subset=['CustomerID', 'InvoiveDate'])
+    df=df.dropna(subset=['CustomerID', 'InvoiceDate'])
     df['CustomerID'] = df['CustomerID'].astype(int)
     dropped= initial_rows - len(df)
     if dropped > 0:
