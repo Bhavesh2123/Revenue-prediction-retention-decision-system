@@ -82,18 +82,24 @@ Raw Transaction Data (CSV)
 ## Project Structure
 
 ```
-├── Dataset/              # Your raw transaction CSV (gitignored)
-├── models/               # Trained model files (.pkl) + metrics JSON
-├── Notebooks/            # Exploratory analysis (Data_Cleaning.ipynb)
-├── scripts/              # Training entry points
-│   ├── train_revenue_model.py
-│   └── train_churn_model.py
-├── src/                  # Core pipeline modules
+├── Dataset/                    # Raw transaction data (gitignored)
+│   └── Raw_Data.csv
+├── models/                     # Trained model files + metrics JSON
+│   ├── churn_model.pkl
+│   └── revenue_model.pkl
+├── Notebooks/                  # Exploratory analysis
+│   └── Data_Cleaning.ipynb
+├── scripts/                    # Training entry points
+│   ├── train_churn_model.py
+│   └── train_revenue_model.py
+├── src/                        # Core pipeline modules
 │   ├── data_preprocessing.py
 │   ├── feature_engineering.py
 │   └── ltv_model.py
-├── reports/              # Generated output charts and CSVs
-├── main.py               # Single entry point — run everything
+├── venv/                       # Virtual environment (gitignored)
+├── client_report_sample.html   # Sample client-facing output report
+├── main.py                     # Single entry point — run everything
+├── .gitignore
 ├── requirements.txt
 └── README.md
 ```
