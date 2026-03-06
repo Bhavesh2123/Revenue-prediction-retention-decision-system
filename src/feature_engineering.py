@@ -38,7 +38,7 @@ def build_additional_features(past_data, snapshot_date):
     return features[['CustomerID','Avg_Order_Value','Customer_Age','Time_Since_Last_Purchase',
                      'Unique_Products','Total_Quantity','Purchase_Velocity']]
 
-def build_Future_Revenue(future_data):
+def build_future_revenue(future_data):
     future_revenue=(future_data.groupby('CustomerID')['TotalPrice']
                     .sum().reset_index())
     future_revenue.columns= ['CustomerID','Future_6M_Revenue']
