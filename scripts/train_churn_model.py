@@ -3,7 +3,7 @@ import pandas as pd
 import joblib
 from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
-df = load_data(BASE_DIR / "Dataset" / "Raw_Data.csv")
+
 
 from src.data_preprocessing import(
     load_data,add_total_price,time_based_split
@@ -18,7 +18,7 @@ from sklearn.model_selection import train_test_split, RandomizedSearchCV
 from sklearn.metrics import classification_report, roc_auc_score
 
 def run_churn_training():
-    df= load_data("Dataset/Raw_Data.csv")
+    df= load_data(BASE_DIR / "Dataset"/"Raw_Data.csv")
     df = add_total_price(df)
 
     cutoff_date= pd.Timestamp("2011-06-30")

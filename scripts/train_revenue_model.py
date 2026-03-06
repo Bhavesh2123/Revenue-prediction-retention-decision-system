@@ -17,7 +17,7 @@ from src.data_preprocessing import(
 from src.feature_engineering import(
     build_rfm,
     build_additional_features,
-    build_Future_Revenue,
+    build_future_revenue,
     merge_all_features
 )
 
@@ -35,7 +35,7 @@ def run_revenue_training():
 
     rfm= build_rfm(past_data, cutoff_date)
     extra_features = build_additional_features(past_data, cutoff_date)
-    future_revenue= build_Future_Revenue(future_data)
+    future_revenue= build_future_revenue(future_data)
 
     model_df= merge_all_features(rfm, extra_features, future_revenue)
 
