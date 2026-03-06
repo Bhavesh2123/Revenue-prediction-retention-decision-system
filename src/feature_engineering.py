@@ -1,5 +1,17 @@
 import pandas as pd
 def build_rfm(past_data, snapshot_date):
+    """
+    Builds Recency, Frequency, Monetary features per customer.
+
+    Args:
+        past_data (pd.DataFrame): Historical transactions before cutoff.
+        snapshot_date (pd.Timestamp): Reference date for recency calculation.
+
+    Returns:
+        pd.DataFrame with columns [CustomerID, Recency, Frequency, Monetary]
+    """
+    if past_data.empty():
+        raise ValueError("[build_rfm] past_data is empty - check your timesplit")
     rfm=past_data.groupby('CustomerID').agg({
         'InvoiceDate': lambda x:(snapshot_date- x.max()).days,
         'InvoiceNo':'nunique',
@@ -36,7 +48,7 @@ def merge_all_features(rfm, extra_features, future_revenue):
     )
     zero_rev= (model_df['Future_6M_Revenue']==0).sum()
     print(f"[merge] {start} customers | {zero_rev} with no future revenue ({zero_rev/start:.1%} churned)")
-    
+
     return model_df
 
 def build_churn_target(past_data,future_data):
