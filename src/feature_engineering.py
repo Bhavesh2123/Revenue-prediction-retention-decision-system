@@ -20,17 +20,23 @@ def build_rfm(past_data, snapshot_date):
     rfm.columns=['CustomerID','Recency','Frequency','Monetary']
     return rfm
 def build_additional_features(past_data, snapshot_date):
-    features= past_data.groupby('CustomerID').agg({
-        'TotalPrice': ['mean'],
-        'InvoiceDate': ['min','max']
-    })
+    features= past_data.groupby('CustomerID').agg(Avg_Order_Value=('TotalPrice', 'mean'),
+        First_Purchase_Date=('InvoiceDate', 'min'),
+        Last_Purchase_Date=('InvoiceDate', 'max'),
+        Unique_Products=('StockCode', 'nunique'),   # product breadth
+        Total_Quantity=('Quantity', 'sum'),          # volume buyer vs. high-value buyer
+        Num_Invoices=('InvoiceNo', 'nunique'),       # same as Frequency but explicit
+    ).reset_index()
     features.columns = ['Avg_Order_Value','First_Purchase_Date','Last_Purchase_Date']
     features = features.reset_index()
     features['Customer_Age']=(snapshot_date - features['First_Purchase_Date']).dt.days
     features['Time_Since_Last_Purchase'] = (
         snapshot_date - features['Last_Purchase_Date']
     ).dt.days
-    return features[['CustomerID','Avg_Order_Value','Customer_Age','Time_Since_Last_Purchase']]
+    features['Purchase_Velocity'] =(features['Num_Invoices'] / (features['Customer_Age'] / 30)
+                                    ).replace([float('inf')], 0).fillna(0)
+    return features[['CustomerID','Avg_Order_Value','Customer_Age','Time_Since_Last_Purchase',
+                     'Unique_Products','Total_Quantity','Purchase_Velocity']]
 
 def build_Future_Revenue(future_data):
     future_revenue=(future_data.groupby('CustomerID')['TotalPrice']
