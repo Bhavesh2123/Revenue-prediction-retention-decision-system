@@ -161,6 +161,6 @@ Typical engagement: **one-time analysis** or **monthly refresh** as new orders c
 
 ## About
 
-Built by [Your Name] — data scientist specialising in D2C customer analytics.
+Built by Bhavesh Jangra — data scientist specialising in D2C customer analytics.
 
 📧 bhaveshjangra889@gmail.com | 🌐https://github.com/Bhavesh2123  | 💼 https://www.linkedin.com/in/bhavesh-jangra-a39a90292/
