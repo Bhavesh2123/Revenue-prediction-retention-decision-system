@@ -1,0 +1,17 @@
+{
+  "MAE": 1073.7602,
+  "RMSE": 7448.1987,
+  "R2": 0.3285,
+  "best_params": {
+    "subsample": 0.7,
+    "reg_lambda": 5.0,
+    "reg_alpha": 0.01,
+    "n_estimators": 500,
+    "min_child_weight": 1,
+    "max_depth": 8,
+    "learning_rate": 0.03,
+    "gamma": 0.5,
+    "comsample_bytree": 0.7
+  },
+  "cv_best_rmse": 3884.4572
+}

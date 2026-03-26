@@ -1,0 +1,16 @@
+{
+  "roc_auc": 0.7584,
+  "cv_best_auc": 0.7607,
+  "churn_rate": 0.4939,
+  "best_params": {
+    "subsample": 0.7,
+    "reg_lambda": 1,
+    "reg_alpha": 0.1,
+    "n_estimators": 100,
+    "min_child_weight": 5,
+    "max_depth": 3,
+    "learning_rate": 0.01,
+    "gamma": 0,
+    "colsample_bytree": 0.9
+  }
+}
