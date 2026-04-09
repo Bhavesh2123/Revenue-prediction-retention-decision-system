@@ -1,4 +1,4 @@
-# 📈 Revenue Prediction & Customer Retention System
+# 📈 OPTIREVENUE SYSTEM
 ### Built for D2C Startups | Powered by XGBoost + RFM Analytics
 
 ---
